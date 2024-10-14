@@ -72,6 +72,8 @@
 * [66. 前端性能优化？](#66-前端性能优化)
 * [67. Chrome 中的 Waterfall ？](#67-chrome-中的-waterfall-)
 * [68. 扫描二维码登录网页是什么原理，前后两个事件是如何联系的？](#68-扫描二维码登录网页是什么原理前后两个事件是如何联系的)
+* [69. Html 规范中为什么要求引用资源不加协议头http或者https？](#69-html-规范中为什么要求引用资源不加协议头http或者https)
+
 
 #### 1. DOCTYPE 的作用是什么？
    
@@ -110,14 +112,14 @@
 
 #### 4. SGML 、 HTML 、XML 和 XHTML 的区别？
    ```
-   SGML 是标准通用标记语言，是一种定义电子文档结构和描述其内容的国际标准语言，是所有电子文档标记语言的起源。
+   SGML（Standard Generalized Markup language）是标准通用置标语言，是一种定义电子文档结构和描述其内容的国际标准语言，是所有电子文档标记语言的起源。
    
-   HTML 是超文本标记语言，主要是用于规定怎么显示网页。
+   HTML（HyperText Markup Language）是超文本标记语言，主要是用于规定怎么显示网页。
    
-   XML 是可扩展标记语言是未来网页语言的发展方向，XML 和 HTML 的最大区别就在于 XML 的标签是可以自己创建的，数量无限多，
+   XML（Extensible Markup Language）是可扩展标记语言是未来网页语言的发展方向，XML 和 HTML 的最大区别就在于 XML 的标签是可以自己创建的，数量无限多，
    而 HTML 的标签都是固定的而且数量有限。
    
-   XHTML 也是现在基本上所有网页都在用的标记语言，他其实和 HTML 没什么本质的区别，标签都一样，用法也都一样，就是比 HTML 
+   XHTML（Extensible Hypertext Markup Language）也是现在基本上所有网页都在用的标记语言，他其实和 HTML 没什么本质的区别，标签都一样，用法也都一样，就是比 HTML 
    更严格，比如标签必须都用小写，标签都必须有闭合标签等。
    ```
 
@@ -349,11 +351,11 @@
 #### 22. 渲染页面时常见哪些不良现象？（浏览器渲染过程）
    ```
     FOUC：主要指的是样式闪烁的问题，由于浏览器渲染机制（比如firefox），在 CSS 加载之前，先呈现了 HTML，就会导致展示
-          出无样式内容，然后样式突然呈现的现象。会出现这个问题的原因主要是 css 加载时间过长，或者 css 被放在了文档底
+          出无样式内容，然后样式突然呈现的现象。会出现这个问题的原因主要是 CSS 加载时间过长，或者 CSS 被放在了文档底
           部。
 
     白屏：有些浏览器渲染机制（比如chrome）要先构建 DOM 树和 CSSOM 树，构建完成后再进行渲染，如果 CSS 部分放在 HTML 
-         尾部，由于 CSS 未加载完成，浏览器迟迟未渲染，从而导致白屏；也可能是把 js 文件放在头部，脚本的加载会阻塞后面
+         尾部，由于 CSS 未加载完成，浏览器迟迟未渲染，从而导致白屏；也可能是把 JS 文件放在头部，脚本的加载会阻塞后面
          文档内容的解析，从而页面迟迟未渲染出来，出现白屏问题。
    ```
    详细资料可以参考：
@@ -477,9 +479,9 @@
     （1） IE8/IE7/IE6 支持通过 document.createElement 方法产生的标签，可以利用这一特性让这些浏览器
         支持 HTML5 新标签，浏览器支持新标签后，还需要添加标签默认的样式。
 
-    （2） 当然也可以直接使用成熟的框架，比如 html5shim ;
+    （2） 当然也可以直接使用成熟的框架，比如 html5shiv ;
          `<!--[if lt IE 9]>
-         <script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+         <script> src="https://cdn.jsdelivr.net/npm/html5shiv/dist/html5shiv.min.js"</script>
          <![endif]-->`
 
          [if lte IE 9]……[endif] 判断 IE 的版本，限定只有 IE9 以下浏览器版本需要执行的语句。
@@ -908,37 +910,37 @@
     <meta> 标签位于文档的头部，不包含任何内容。<meta> 标签的属性定义了与文档相关联的名称/值对。
 
     <!DOCTYPE html>  H5标准声明，使用 HTML5 doctype，不区分大小写
-    <head lang=”en”> 标准的 lang 属性写法
-    <meta charset=’utf-8′>    声明文档使用的字符编码
-    <meta http-equiv=”X-UA-Compatible” content=”IE=edge,chrome=1″/>   优先使用 IE 最新版本和 Chrome
-    <meta name=”description” content=”不超过150个字符”/>       页面描述
-    <meta name=”keywords” content=””/>      页面关键词者
-    <meta name=”author” content=”name, email@gmail.com”/>    网页作
-    <meta name=”robots” content=”index,follow”/>      搜索引擎抓取
-    <meta name=”viewport” content=”initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no”> 为移动设备添加 viewport
-    <meta name=”apple-mobile-web-app-title” content=”标题”> iOS 设备 begin
-    <meta name=”apple-mobile-web-app-capable” content=”yes”/>  添加到主屏后的标题（iOS 6 新增）
+    <head lang="en"> 标准的 lang 属性写法
+    <meta charset="utf-8">    声明文档使用的字符编码
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>   优先使用 IE 最新版本和 Chrome
+    <meta name="description" content="不超过150个字符"/>       页面描述
+    <meta name="keywords" content=""/>      页面关键词者
+    <meta name="author" content="name, email@gmail.com"/>    网页作
+    <meta name="robots" content="index,follow"/>      搜索引擎抓取
+    <meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no"> 为移动设备添加 viewport
+    <meta name="apple-mobile-web-app-title" content="标题"> iOS 设备 begin
+    <meta name="apple-mobile-web-app-capable" content="yes"/>  添加到主屏后的标题（iOS 6 新增）
     是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏
-    <meta name=”apple-itunes-app” content=”app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL”>
+    <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
     添加智能 App 广告条 Smart App Banner（iOS 6+ Safari）
-    <meta name=”apple-mobile-web-app-status-bar-style” content=”black”/>
-    <meta name=”format-detection” content=”telphone=no, email=no”/>  设置苹果工具栏颜色
-    <meta name=”renderer” content=”webkit”>  启用360浏览器的极速模式(webkit)
-    <meta http-equiv=”X-UA-Compatible” content=”IE=edge”>     避免IE使用兼容模式
-    <meta http-equiv=”Cache-Control” content=”no-siteapp” />    不让百度转码
-    <meta name=”HandheldFriendly” content=”true”>     针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓
-    <meta name=”MobileOptimized” content=”320″>   微软的老式浏览器
-    <meta name=”screen-orientation” content=”portrait”>   uc强制竖屏
-    <meta name=”x5-orientation” content=”portrait”>    QQ强制竖屏
-    <meta name=”full-screen” content=”yes”>              UC强制全屏
-    <meta name=”x5-fullscreen” content=”true”>       QQ强制全屏
-    <meta name=”browsermode” content=”application”>   UC应用模式
-    <meta name=”x5-page-mode” content=”app”>    QQ应用模式
-    <meta name=”msapplication-tap-highlight” content=”no”>    windows phone 点击无高光
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telphone=no, email=no"/>  设置苹果工具栏颜色
+    <meta name="renderer" content="webkit">  启用360浏览器的极速模式(webkit)
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">     避免IE使用兼容模式
+    <meta http-equiv="Cache-Control" content="no-siteapp" />    不让百度转码
+    <meta name="HandheldFriendly" content="true">     针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓
+    <meta name="MobileOptimized" content="320">   微软的老式浏览器
+    <meta name="screen-orientation" content="portrait">   uc强制竖屏
+    <meta name="x5-orientation" content="portrait">    QQ强制竖屏
+    <meta name="full-screen" content="yes">              UC强制全屏
+    <meta name="x5-fullscreen" content="true">       QQ强制全屏
+    <meta name="browsermode" content="application">   UC应用模式
+    <meta name="x5-page-mode" content="app">    QQ应用模式
+    <meta name="msapplication-tap-highlight" content="no">    windows phone 点击无高光
     设置页面不缓存
-    <meta http-equiv=”pragma” content=”no-cache”>
-    <meta http-equiv=”cache-control” content=”no-cache”>
-    <meta http-equiv=”expires” content=”0″>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
    ```
    详细资料可以参考：
    [《Meta 标签用法大全》](http://www.cnblogs.com/qiumohanyu/p/5431859.html)
@@ -1059,7 +1061,7 @@
    ```
     HTML 的注释方法 <!--注释内容--> 
     
-    CSS 的��释方法 /*注释内容*/ 
+    CSS 的注释方法 /*注释内容*/ 
     
     JavaScript 的注释方法 /* 多行注释方式 */ //单行注释方式
    ```
@@ -1145,3 +1147,18 @@
    ```
    详细资料可以参考：
    [《微信扫描二维码登录网页》](https://www.zhihu.com/question/20368066)
+
+#### 69. Html 规范中为什么要求引用资源不加协议头`http`或者`https`？
+   ```
+    如果用户当前访问的页面是通过 HTTPS 协议来浏览的，那么网页中的资源也只能通过 HTTPS 协议来引用，否则浏览器会出现
+    警告信息，不同浏览器警告信息展现形式不同。
+
+    为了解决这个问题，我们可以省略 URL 的协议声明，省略后浏览器照样可以正常引用相应的资源，这项解决方案称为
+     protocol-relative URL，暂且可译作协议相对 URL。
+
+    如果使用协议相对 URL，无论是使用 HTTPS，还是 HTTP 访问页面，浏览器都会以相同的协议请求页面中的资源，避免弹出类似
+    的警告信息，同时还可以节省5字节的数据量。
+   ```
+   详细资料可以参考：
+   [《协议相对 URL》](https://www.ludou.org/the-protocol-relative-url.html)
+   [《Why you need protocol-relative URLs *now*》](https://www.tuicool.com/articles/nEjU7b)
